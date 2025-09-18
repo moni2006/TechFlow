@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fashion AI – Modern Login</title>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+  /* Reset and global */
+  * {
+    box-sizing: border-box;
+  }
+  body,
+  html {
+    height: 100%;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #1e1e2f;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Background floating blobs */
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.7;
+    animation: float 20s ease-in-out infinite;
+    z-index: -1;
+  }
+  body::before {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle at 30% 30%, #ff3e6c, transparent 60%);
+    top: 10%;
+    left: 15%;
+  }
+  body::after {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle at 70% 70%, #ff87c0, transparent 60%);
+    bottom: 10%;
+    right: 20%;
+    animation-delay: 7s;
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(-30px) translateX(25px);
+    }
+  }
+
+  /* Container and card */
+  .container {
+    background: #28293d;
+    border-radius: 24px;
+    width: 370px;
+    padding: 40px 30px;
+    box-shadow: 0 25px 40px rgba(255, 62, 108, 0.3);
+    position: relative;
+  }
+  h1 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, #ff3e6c, #ff87c0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  p.welcome {
+    font-weight: 400;
+    color: #bbb;
+    margin-bottom: 30px;
+  }
+
+  /* Avatar upload */
+  .avatar-upload {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    border: 3px solid #ff3e6c;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+  }
+  .avatar-upload:hover {
+    box-shadow: 0 0 15px #ff3e6caa;
+  }
+  .avatar-upload input {
+    display: none;
+  }
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .avatar-upload:hover .avatar-img {
+    transform: scale(1.05);
+  }
+  .avatar-upload::after {
+    content: "Upload\nAvatar";
+    white-space: pre-line;
+    color: white;
+    font-weight: 600;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  .avatar-upload:hover::after {
+    opacity: 1;
+  }
+
+  /* Form inputs with floating labels */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  .input-group {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #555;
+    padding: 12px 0 10px 0;
+    color: white;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    outline: none;
+  }
+  input[type="email"]:focus,
+  input[type="password"]:focus,
+  input[type="text"]:focus {
+    border-color: #ff3e6c;
+    box-shadow: 0 2px 8px #ff3e6c99;
+  }
+  label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    font-size: 1rem;
+    color: #777;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  input:focus + label,
+  input:not(:placeholder-shown) + label {
+    top: -12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ff3e6c;
+  }
+
+  /* Show/hide password toggle */
+  .show-password {
+    position: absolute;
+    right: 0;
+    top: 7px;
+    color: #999;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.2rem;
+    padding: 0 5px;
+    transition: color 0.3s ease;
+  }
+  .show-password:hover {
+    color: #ff3e6c;
+  }
+
+  /* Social login buttons */
+  .social-login {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 35px;
+  }
+  .social-login button {
+    background: #393a55;
+    border: none;
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .social-login button:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 15px #ff3e6c99;
+  }
+  .social-google {
+    background: #db4437;
+  }
+  .social-facebook {
+    background: #4267b2;
+  }
+
+  /* Submit button */
+  button[type="submit"] {
+    background: linear-gradient(135deg, #ff3e6c, #ff87c0);
+    border: none;
+    border-radius: 30px;
+    padding: 14px;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 15px #ff3e6caa;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  button[type="submit"]:hover {
+    box-shadow: 0 12px 20px #ff3e6cdd;
+    transform: translateY(-4px);
+  }
+
+  /* Create account link */
+  .switch-mode {
+    margin-top: 25px;
+    font-weight: 600;
+    color: #ff3e6c;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    display: block;
+    padding: 0;
+    width: 100%;
+  }
+  .switch-mode:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 400px) {
+    .container {
+      width: 95%;
+      padding: 30px 20px;
+    }
+  }
+</style>
+<!-- FontAwesome CDN for icons -->
+<script
+  src="https://kit.fontawesome.com/2d65d5a84b.js"
+  crossorigin="anonymous"
+></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Fashion AI</h1>
+    <p class="welcome">Find your perfect style with AI-powered recommendations.</p>
+
+    <div class="avatar-upload" title="Click to upload avatar">
+      <input type="file" id="avatar" accept="image/*" />
+      <img
+        src="https://i.pravatar.cc/110"
+        alt="User Avatar"
+        class="avatar-img"
+        id="avatarPreview"
+      />
+    </div>
+
+    <form id="loginForm" novalidate>
+      <div class="social-login">
+        <button class="social-google" type="button" title="Login with Google">
+          <i class="fab fa-google"></i>
+        </button>
+        <button class="social-facebook" type="button" title="Login with Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </button>
+      </div>
+      <div class="input-group">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder=" "
+          autocomplete="email"
+        />
+        <label for="email">Email Address</label>
+      </div>
+      <div class="input-group" style="position: relative;">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          placeholder=" "
+          autocomplete="current-password"
+        />
+        <label for="password">Password</label>
+        <span id="togglePassword" class="show-password" title="Show/Hide Password"
+          ><i class="fas fa-eye"></i
+        ></span>
+      </div>
+      <button type="submit">Sign In</button>
+    </form>
+
+    <button class="switch-mode" id="switchMode">Create Account</button>
+  </div>
+
+  <script>
+    // Avatar upload preview
+    const avatarInput = document.getElementById("avatar");
+    const avatarPreview = document.getElementById("avatarPreview");
+    avatarInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        avatarPreview.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Password show/hide toggle
+    const togglePasswordBtn = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+    togglePasswordBtn.addEventListener("click", () => {
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        togglePasswordBtn.innerHTML = <i class="fas fa-eye-slash"></i>;
+      } else {
+        passwordInput.type = "password";
+        togglePasswordBtn.innerHTML = <i class="fas fa-eye"></i>;
+      }
+      passwordInput.focus();
+    });
+
+    // Switch mode button (toggle between login and signup)
+    const switchModeBtn = document.getElementById("switchMode");
+    const form = document.getElementById("loginForm");
+    const container = document.querySelector(".container");
+    let signUpMode = false;
+
+    switchModeBtn.addEventListener("click", () => {
+      signUpMode = !signUpMode;
+      if (signUpMode) {
+        switchModeBtn.textContent = "Already have an account? Sign In";
+        form.innerHTML = `
+          <div class="input-group">
+            <input type="text" id="name" name="name" required placeholder=" " autocomplete="name" />
+            <label for="name">Full Name</label>
+          </div>
+          <div class="input-group">
+            <input type="email" id="email" name="email" required placeholder=" " autocomplete="email" />
+            <label for="email">Email Address</label>
+          </div>
+          <div class="input-group" style="position: relative;">
+            <input type="password" id="password" name="password" required placeholder=" " autocomplete="new-password" />
+            <label for="password">Password</label>
+            <span id="togglePassword" class="show-password" title="Show/Hide Password"><i class="fas fa-eye"></i></span>
+          </div>
+          <button type="submit">Register</button>
+        `;
+
+        // Rebind password visibility toggle for the new element
+        const newTogglePassword = document.getElementById("togglePassword");
+        const newPasswordInput = document.getElementById("password");
+        newTogglePassword.addEventListener("click", () => {
+          if (newPasswordInput.type === "password") {
+            newPasswordInput.type = "text";
+            newTogglePassword.innerHTML = <i class="fas fa-eye-slash"></i>;
+          } else {
+            newPasswordInput.type = "password";
+            newTogglePassword.innerHTML = <i class="fas fa-eye"></i>;
+          }
+          newPasswordInput.focus();
+        });
+      } else {
+        switchModeBtn.textContent = "Create Account";
+        form.innerHTML = `
+          <div class="social-login">
+            <button class="social-google" type="button" title="Login with Google"><i class="fab fa-google"></i></button>
+            <button class="social-facebook" type="button" title="Login with Facebook"><i class="fab fa-facebook-f"></i></button>
+          </div>
+          <div class="input-group">
+            <input type="email" id="email" name="email" required placeholder=" " autocomplete="email" />
+            <label for="email">Email Address</label>
+          </div>
+          <div class="input-group" style="position: relative;">
+            <input type="password" id="password" name="password" required placeholder=" " autocomplete="current-password" />
+            <label for="password">Password</label>
+            <span id="togglePassword" class="show-password" title="Show/Hide Password"><i class="fas fa-eye"></i></span>
+          </div>
+          <button type="submit">Sign In</button>
+        `;
+
+        const newTogglePassword = document.getElementById("togglePassword");
+        const newPasswordInput = document.getElementById("password");
+        newTogglePassword.addEventListener("click", () => {
+          if (newPasswordInput.type === "password") {
+            newPasswordInput.type = "text";
+            newTogglePassword.innerHTML = <i class="fas fa-eye-slash"></i>;
+          } else {
+            newPasswordInput.type = "password";
+            newTogglePassword.innerHTML = <i class="fas fa-eye"></i>;
+          }
+          newPasswordInput.focus();
+        });
+      }
+    });
+
+    // TODO: Add actual form submission & validation here
+  </script>
+</body>
+</html>

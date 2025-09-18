@@ -1,0 +1,44 @@
+/* Make the Dashboard Responsive */
+@media (max-width: 768px) {
+    /* Dashboard Navigation */
+    .dashboard-nav ul {
+        display: flex;
+        flex-direction: column; /* Stack nav items vertically */
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .dashboard-nav ul li {
+        margin-bottom: 1rem; /* Add space between nav items */
+    }
+
+    .dashboard-nav ul li a {
+        padding: 10px 15px; /* Adjust padding for smaller screens */
+        font-size: 18px; /* Adjust font size for readability */
+    }
+
+    .dashboard-nav ul li a i {
+        margin-right: 8px; /* Adjust icon spacing */
+    }
+
+    /* Recommendations Section on Mobile */
+    .recommendations-grid {
+        grid-template-columns: 1fr; /* Single column for mobile */
+        padding: 1rem; /* Add padding for spacing */
+    }
+
+    .recommendation-item {
+        margin-bottom: 1.5rem; /* Add space between items */
+        padding: 15px; /* Adjust padding inside items */
+    }
+
+    .recommendation-item img {
+        width: 100%; /* Ensure images are responsive */
+        height: auto;
+    }
+
+    .recommendation-item button {
+        padding: 12px 20px; /* Adjust button size */
+        font-size: 16px; /* Ensure button text is readable */
+    }
+}

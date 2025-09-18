@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Body Styling */
+        body {
+            background-color: #fff;
+            color: #000;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: #f2f2f2;
+            color: #000;
+            padding: 4rem 0;
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        header a {
+            color: #000;
+            font-size: 1.2rem;
+            text-decoration: none;
+            margin-top: 15px;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        header a:hover {
+            color: #555;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1.5rem;
+        }
+
+        main h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            font-weight: 500;
+            margin-bottom: 4rem;
+            color: #000;
+        }
+
+        /* Recommendations Grid */
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        /* Recommendation Item */
+        .recommendation-item {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: popUp 0.6s forwards;
+        }
+
+        @keyframes popUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .recommendation-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .recommendation-item img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .recommendation-item img:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        .recommendation-item p {
+            margin: 10px 0;
+            font-weight: 600;
+            color: #000;
+            font-size: 1.2rem;
+        }
+
+        .recommendation-item .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        /* Buttons for Save and Buy Now */
+        .btn {
+            margin: 8px;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .save-btn {
+            background-color: #f2f2f2;
+            color: #000;
+        }
+
+        .save-btn:hover {
+            background-color: #ddd;
+            transform: translateY(-5px);
+        }
+
+        .buy-btn {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .buy-btn:hover {
+            background-color: #444;
+            transform: translateY(-5px);
+        }
+
+        /* More Button */
+        .more-btn {
+            display: inline-block;
+            padding: 12px 22px;
+            margin-top: 30px;
+            background-color: #f2f2f2;
+            color: #000;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .more-btn:hover {
+            background-color: #ddd;
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #333;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-top: 4rem;
+            border-radius: 25px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #92614c;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Personalized Recommendations</h1>
+        <a href="index.html">Back to Dashboard</a>
+    </header>
+
+    <main>
+        <h2>Your Custom Outfit Suggestions</h2>
+        <div class="recommendations-grid">
+            <!-- Grid items populated via JavaScript -->
+        </div>
+    </main>
+
+    
+
+    <script>
+        const grid = document.querySelector('.recommendations-grid');
+        const outfits = [
+            { name: "Boho Chic", img: "https://plus.unsplash.com/premium_photo-1664383006381-367efecb7339?q=80&w=2572&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", price: "$120" },
+            { name: "Urban Casual", img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRTbQZXOneVWvpaJoGd6Ny_Jebl1m4FiMGayVSniumFwRc_PGykkq4ORgV7oh1nO553vL77kLY5C-Hi12-KIZVQJ2nyAMiURo0Vm2cFZjQq", price: "$90" },
+            { name: "Classic Denim", img: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSRzZWrbRRWi-uufiUOhZ9ln6VTULc83eUBeAvQfzYlYJdeek4FOusueoYkVLp1twhXC7KvlMtZ0hv9aX_SlfBQdI2RRcEl_726onMsTI4rrd2Y1i4yInxY", price: "$80" },
+            { name: "Summer Vibes", img: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS6F1DMzFPYRa1pPrAuzUaNez-Ye9pisYXP5s8RgGU3WeN2Ms_maMwQ1mYdCEXSjNvzr8m0nyN6LBXt7z5lu29LSj8OUutoGbkq7B6GTHI", price: "$60" },
+            { name: "Vintage Allure", img: "https://www.candere.com/media/jewellery/images/KC03060_1.jpg", price: "$150" },
+            { name: "Modern Elegance", img: "https://images.unsplash.com/photo-1571513722275-4b41940f54b8?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", price: "$130" },
+            { name: "Beach Getaway", img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcR6t2HkJehmFNOl6elHI9xDEB6XnPg1MhM1baPvhrwltrtuumcuX6yWh9pVel-eUROCks4wUXnFQ9VsyxYP581EkVyoFPkROS-MgGqjZgw", price: "$75" },
+            { name: "Edgy Black", img: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTYUQr0JuDGlsmbJaLzIr6AuaGIBA0v4DCxyrJ_4hCsBL1MB6MBs4Cq4f0Jr0pPJTIy7b9GHCSQp2iXzJ4fqnDhzNzDqVglfN7-reWVse4mmcaZzPvJomWaZQ", price: "$99" },
+            { name: "Floral Fiesta", img: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQMfnA9CZWV0zEXle90JQq15DtHkJG_Xmlmzbix0hl5b2bGPPyIirTQh76zN3rU6zBZjwcik3L920tV5pk7j_inRKTDPbzyhuYfVp9mSX2d", price: "$50" },
+            { name: "Party Glam", img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSQyFspDHal2oebFxhoLAJKnU4O0IYZgPMGpVqVwXIdCT2s3NnP0C5liPRtH8N_pSTfRiDwY0zkJINKbyP_WQV1zH3_B79zDdu61kgB9vcvTmHay7i2BG4k", price: "$180" },
+            { name: "Streetwise", img: "https://images.meesho.com/images/products/444171177/76rpl_1200.jpg", price: "$70" },
+            { name: "Sporty Spice", img: "https://m.media-amazon.com/images/I/61GGgXCAURL.AC_SY879.jpg", price: "$85" },
+            { name: "Winter Warmth", img: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRr2qpcEBXAVPDuHWPmwR045dGbMzAdtkrEWqQOTUOXSrza16Msb2SiPjYrITcM7sHpWcuNkRkhFXLUhfktwSBl157jIwJdIfhY6JM4Oa8", price: "$110" },
+            { name: "Autumn Hues", img: "https://assets.ajio.com/medias/sys_master/root/20240929/QICB/66f8c237f9b8ef490b7bb67c/-473Wx593H-700503607-green-MODEL.jpg", price: "$95" },
+            { name: "Bold Patterns", img: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSCd1S3K-s-S88w1w6S1Gxo-HSwcP4d0BDmPW8TVS8rtdY2I6h3DyL7nR4Ixxsmv-5bXCg0a5kVWzGEw0EOSjrqmNWsMPwKLoRDxew0Q4sJ", price: "$130" },
+            { name: "Monochrome Magic", img: "https://assets.ajio.com/medias/sys_master/root/20240911/48QJ/66e12b616f60443f316d6f55/-473Wx593H-442692887-olive-MODEL.jpg", price: "$120" },
+            { name: "Sophisticated Style", img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSYBdhcb-Ebx_pVUxVne7iwZNV75cyVrLQRj9mCcdCirv_JYBqiEzPqMOS8yCxECsCRZL4d47YEw4YfaeqFMi280mjSmrzsKUAGWRWociU", price: "$140" },
+            { name: "Playful Prints", img: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcThD8iXidnYhy4elgCjk5EhIzYpWm0tJXB-R30X2lUs8Y6ffCOyv9mW7jgQ2QraLxxjmUM4ixIo1zQA73kJU6stTR3eb-NQQ5jj9uItIyZxLDCxhsCAx-5W", price: "$65" },
+            { name: "saree", img: "https://i.pinimg.com/1200x/6f/33/a6/6f33a6dc30bb55fc593e348a1dbebc6a.jpg"},
+            { name: "Evening Gown", img: "https://www.newyorkdress.com/cdn/shop/products/LaDivine-CD867_emerald_3_600x.jpg?v=1701190423", price: "$220" },
+        ];
+    
+        let index = 0;
+    
+        // Function to add a new recommendation to the grid
+        function addRecommendation() {
+            if (index < outfits.length) {
+                const outfit = outfits[index];
+                const item = document.createElement('div');
+                item.classList.add('recommendation-item');
+                item.innerHTML = `
+                    <img src="${outfit.img}" alt="${outfit.name}">
+                    <p>${outfit.name}</p>
+                    <div class="price">${outfit.price}</div>
+                    <button class="btn save-btn">Save for Later</button>
+                    <button class="btn buy-btn">Buy Now</button>
+                `;
+                grid.appendChild(item);
+                index++;
+            }
+        }
+    
+        // Start adding recommendations every 1 second
+        setInterval(addRecommendation, 500);
+    </script>
+    
+</body>
+</html>

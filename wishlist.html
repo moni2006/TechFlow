@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wishlist: Fashion Styles</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { 
+      background: linear-gradient(110deg, #f1f8fc 60%, #f9e7ff 100%);
+      font-family: 'Nunito', Arial, sans-serif; margin:0; padding:0; 
+    }
+    h1 {
+      text-align: center;
+      font-size:2.2em;
+      margin: 30px 0 10px 0;
+      color:#374056
+    }
+    h2 {
+      text-align:left;
+      font-size:1.3em;
+      margin-top:38px;
+      margin-bottom:12px;
+      color:#647591;
+      margin-left:24px;
+      letter-spacing:0.2em;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap:24px;
+      padding: 0 28px 24px 28px;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    .card {
+      background: #fff;
+      border-radius:16px;
+      box-shadow: 0 4px 18px rgba(87,49,140,0.13), 0 2px 7px #cde6fa;
+      overflow:hidden;
+      position:relative;
+      transition:transform 0.22s, box-shadow 0.16s;
+    }
+    .card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 36px rgba(87,49,140,0.16), 0 2px 14px #bb98e0;
+    }
+    .card img {
+      width:100%; height:220px; object-fit:cover;
+      display:block;
+      transition:filter 0.29s;
+    }
+    .card:hover img {
+      filter:brightness(0.92) blur(1px);
+    }
+    .caption {
+      position:absolute; bottom:0; left:0; right:0;
+      background:linear-gradient(180deg,rgba(228,244,255,0.09) 0%, #faf6ff 100%);
+      padding:22px 18px 12px 18px;
+      font-size:1.14em; color:#694ca2; font-weight:600;
+      letter-spacing:0.06em; border-radius:0 0 16px 16px;
+      box-shadow: 0 4px 16px rgba(87,49,140,0.06);
+      text-align:left;
+    }
+    @media (max-width:600px) { 
+      .gallery { grid-template-columns: 1fr; padding:0 6vw; }
+      .card img { height:180px;}
+      h2 {margin-left:5vw;}
+    }
+  </style>
+</head>
+<body>
+  <h1>My Fashion Wishlist</h1>
+
+  <h2>Casual</h2>
+  <div class="gallery">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=90" alt="Casual 1">
+      <div class="caption">Denim Shift Dress</div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=90" alt="Casual 2">
+      <div class="caption">Striped Tee & Shorts</div>
+    </div>
+    <div class="card">
+      <img src="https://images.jdmagicbox.com/quickquotes/images_main/light-denim-mens-jacket-2187892245-fy0e9b9u.jpg" alt="Casual 3">
+      <div class="caption">Light Denim Jacket</div>
+    </div>
+  </div>
+
+  <h2>Traditional</h2>
+  <div class="gallery">
+    <div class="card">
+      <img src="https://t4.ftcdn.net/jpg/01/67/25/37/360_F_167253732_FVaF7PyA5vat3JVPvP4F5AsCoZkYAnZF.jpg" alt="Saree">
+      <div class="caption">Elegant Saree</div>
+    </div>
+    <div class="card">
+      <img src="https://blog.g3fashion.com/wp-content/uploads/2018/10/G3-MKS0768-4-e1593847889733.jpg" alt="Kurta">
+      <div class="caption">Festive Kurta</div>
+    </div>
+    <div class="card">
+      <img src="https://img2.ogaanindia.com/pub/media/catalog/product/cache/3f6619daccdb194398d06464ab49fa6e/m/s/ms1613.jpg" alt="Traditional 3">
+      <div class="caption">Zari Kurta Set</div>
+    </div>
+  </div>
+
+  <h2>Partywear</h2>
+  <div class="gallery">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=90" alt="Partywear 1">
+      <div class="caption">Sequins Evening Gown</div>
+    </div>
+    <div class="card">
+      <img src="https://i.etsystatic.com/16236366/r/il/0bc3ed/3776715683/il_570xN.3776715683_t4hh.jpg" alt="Partywear 2">
+      <div class="caption">Velvet Cocktail Dress</div>
+    </div>
+    <div class="card">
+      <img src="https://img.perniaspopupshop.com/catalog/product/n/j/NJPC0222220_1.jpg?impolicy=listingimagenew" alt="Partywear 3">
+      <div class="caption">Shimmery Jumpsuit</div>
+    </div>
+  </div>
+</body>
+</html>

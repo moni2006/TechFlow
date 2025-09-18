@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Body Analysis</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+    <style>
+        /* Theme Colors */
+        :root {
+            --theme-primary: #5e35b1;
+            --theme-secondary: #7e57c2;
+            --theme-gradient: linear-gradient(to right, #5e35b1, #7e57c2);
+            --text-light: #e3d0ff;
+            --text-dark: #ffffff;
+            --input-bg: #f9f4f1;
+        }
+
+        /* General Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background: var(--theme-gradient);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-light);
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        header h1 {
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .smart-size h1 {
+            font-size: 2rem;
+            color: var(--theme-primary);
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin: 1rem 0 0.5rem;
+            font-weight: 600;
+            color: var(--theme-secondary);
+        }
+
+        input[type="file"],
+        input[type="text"] {
+            width: 95%;
+            padding: 0.8rem;
+            font-size: 1rem;
+            border: 2px solid var(--theme-primary);
+            border-radius: 8px;
+            background-color: var(--input-bg);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--theme-secondary);
+            box-shadow: 0 0 10px rgba(94, 53, 177, 0.5);
+        }
+
+        button {
+            margin-top: 1.5rem;
+            background: var(--theme-primary);
+            color: var(--text-dark);
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background: var(--theme-secondary);
+            transform: translateY(-2px);
+        }
+
+        .recommendation {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .recommendation a {
+            color: var(--theme-primary);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .recommendation a:hover {
+            color: var(--theme-secondary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: auto;
+            background: var(--theme-secondary);
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video autoplay muted loop class="background-video">
+        <source src="video3.mp4_1732788270207.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Header -->
+    <header>
+        <h1>smart-size</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="smart-size">
+            <h1>Analyze Your Measurements</h1>
+            <form action="http://192.168.2.133:8501" method="GET">
+                <label for="bodyImage">Upload Your Photo:</label>
+                <input type="file" id="bodyImage" name="bodyImage" accept="image/*">
+
+                <label for="measurements">Enter Your Measurements:</label>
+                <input type="text" id="measurements" name="measurements" placeholder="e.g., Height, Waist, Bust">
+
+                <button type="submit">Analyze</button>
+            </form>
+            <div class="recommendation">
+                <h2>Our AI Suggests:</h2>
+                <a href="recommendations.html">View Latest Recommendations</a>
+            </div>
+        </div>
+    </div>
+
+   
+
+    <!-- GSAP Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        // GSAP Animations
+        gsap.from("header h1", {
+            opacity: 0,
+            y: -50,
+            duration: 1.5,
+            ease: "power3.out",
+        });
+
+        gsap.from(".container", {
+            opacity: 0,
+            scale: 0.8,
+            duration: 1.2,
+            ease: "power3.out",
+            delay: 0.5,
+        });
+
+        // Pre-fill the measurements field
+        window.onload = function() {
+            const measurementsInput = document.getElementById('measurements');
+            measurementsInput.value = "Height: 170 cm, Waist: 30 inches, Bust: 36 inches";
+        };
+    </script>
+</body>
+</html>
